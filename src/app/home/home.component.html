@@ -1,1 +1,9 @@
-<p>Hello {{this.username}}</p>
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>Hello {{this.username}}</mat-card-title>
+    <mat-card-subtitle>Here is your current portfolio</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-actions align="end">
+    <button mat-raised-button color="primary" (click)="searchStock()">Add Stock</button>
+  </mat-card-actions>
+</mat-card>

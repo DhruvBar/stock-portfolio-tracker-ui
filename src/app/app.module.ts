@@ -12,15 +12,26 @@ import { LoginComponent } from './login/login.component';
 import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import { SignupComponent } from './signup/signup.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {MatButtonModule} from '@angular/material/button';
+import {MatGridListModule} from '@angular/material/grid-list';
+import { AddStockDialogComponent } from './add-stock-dialog/add-stock-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { SearchStockComponent } from './search-stock/search-stock.component';
+import {AuthInterceptor} from './helper/auth.interceptor';
+import { SearchResultCardComponent } from './search-result-card/search-result-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    AddStockDialogComponent,
+    SearchStockComponent,
+    SearchResultCardComponent
   ],
   imports: [
     BrowserModule,
@@ -33,9 +44,22 @@ import {MatButtonModule} from '@angular/material/button';
     MatCardModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatButtonModule
+    MatButtonModule,
+    MatGridListModule,
+    MatDialogModule,
+    MatStepperModule,
+    MatStepperModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule {

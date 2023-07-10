@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TokenStorageService} from '../service/token-storage.service';
+import {MatDialog} from '@angular/material/dialog';
+import {AddStockDialogComponent} from '../add-stock-dialog/add-stock-dialog.component';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -9,11 +12,14 @@ import {TokenStorageService} from '../service/token-storage.service';
 export class HomeComponent implements OnInit {
 
   public username: string;
-
-  constructor(private tokenStorageService: TokenStorageService) { }
-
-  ngOnInit(): void {
-    this.username = this.tokenStorageService.getUser()
+  value = '';
+  constructor(private tokenStorageService: TokenStorageService, private router: Router) {
   }
 
+  ngOnInit(): void {
+    this.username = this.tokenStorageService.getUser();
+  }
+  searchStock() {
+    this.router.navigate(['/search']);
+  }
 }

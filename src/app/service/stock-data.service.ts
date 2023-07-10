@@ -15,4 +15,12 @@ export class StockDataService {
     return this.http.get(API_URL + 'user/detail');
   }
 
+  searchStocks(query): Observable<any> {
+    return this.http.get(API_URL + 'stock/search?query=' + query );
+  }
+
+  getCompanyDetails(query): Observable<any> {
+    return this.http.get(API_URL + 'stock/detail?symbol=' + query );
+  }
+
 }
