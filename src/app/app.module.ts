@@ -12,6 +12,7 @@ import { LoginComponent } from './login/login.component';
 import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import { SignupComponent } from './signup/signup.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { SignupComponent } from './signup/signup.component';
     MatIconModule,
     MatInputModule,
     MatCardModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
+import {AuthService} from '../service/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -15,16 +16,18 @@ export class LoginComponent implements OnInit {
 
   submit() {
     if (this.form.valid) {
-      this.submitEM.emit(this.form.value);
+      this.authService.login(this.form.value).subscribe(
+        data => {
+          console.log(data);
+        },
+        err => {
+          console.log(err);
+        }
+      );
     }
   }
 
-  @Input() error: string | null;
-
-  @Output() submitEM = new EventEmitter();
-
-  constructor() {
-  }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
   }
