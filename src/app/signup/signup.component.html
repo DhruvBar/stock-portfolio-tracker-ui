@@ -4,13 +4,13 @@
     <form [formGroup]="form" (ngSubmit)="submit()">
       <p>
         <mat-form-field>
-          <input type="text" matInput placeholder="Email" formControlName="email">
+          <input type="text" matInput placeholder="Name" formControlName="name">
         </mat-form-field>
       </p>
 
       <p>
         <mat-form-field>
-          <input type="text" matInput placeholder="Username" formControlName="username">
+          <input type="text" matInput placeholder="Email" formControlName="email">
         </mat-form-field>
       </p>
 
@@ -22,6 +22,10 @@
 
       <p *ngIf="error" class="error">
         {{ error }}
+      </p>
+
+      <p *ngIf="msg" class="success">
+        {{ msg }}
       </p>
 
       <div class="button">
