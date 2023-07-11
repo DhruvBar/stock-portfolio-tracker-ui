@@ -27,6 +27,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTableModule} from '@angular/material/table';
 import { CompanyDetailDialogComponent } from './company-detail-dialog/company-detail-dialog.component';
+import { ToolbarComponent } from './toolbar/toolbar.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { CompanyDetailDialogComponent } from './company-detail-dialog/company-de
     AddStockDialogComponent,
     SearchStockComponent,
     SearchResultCardComponent,
-    CompanyDetailDialogComponent
+    CompanyDetailDialogComponent,
+    ToolbarComponent
   ],
   imports: [
     BrowserModule,
