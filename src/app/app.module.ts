@@ -25,6 +25,8 @@ import { SearchResultCardComponent } from './search-result-card/search-result-ca
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatTableModule} from '@angular/material/table';
+import { CompanyDetailDialogComponent } from './company-detail-dialog/company-detail-dialog.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     SignupComponent,
     AddStockDialogComponent,
     SearchStockComponent,
-    SearchResultCardComponent
+    SearchResultCardComponent,
+    CompanyDetailDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +61,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatTableModule
   ],
   providers: [
     {

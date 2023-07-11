@@ -19,12 +19,16 @@ export class StockDataService {
     return this.http.get(API_URL + 'stock/search?query=' + query );
   }
 
-  getCompanyDetails(query): Observable<any> {
-    return this.http.get(API_URL + 'stock/detail?symbol=' + query );
+  getCompanyDetails(symbol): Observable<any> {
+    return this.http.get(API_URL + 'stock/detail?symbol=' + symbol );
   }
 
   addStockToPortFolio(addStockRequest): Observable<any> {
     return this.http.post(API_URL + 'stock/add/holding', addStockRequest);
+  }
+
+  getPortFolio(): Observable<any> {
+    return this.http.get(API_URL + 'stock/portfolio');
   }
 
 }

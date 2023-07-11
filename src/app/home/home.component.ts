@@ -3,6 +3,9 @@ import {TokenStorageService} from '../service/token-storage.service';
 import {MatDialog} from '@angular/material/dialog';
 import {AddStockDialogComponent} from '../add-stock-dialog/add-stock-dialog.component';
 import {Router} from '@angular/router';
+import {MatTableDataSource} from '@angular/material/table';
+import {StockDataService} from '../service/stock-data.service';
+import {CompanyDetailDialogComponent} from '../company-detail-dialog/company-detail-dialog.component';
 
 @Component({
   selector: 'app-home',
@@ -13,13 +16,43 @@ export class HomeComponent implements OnInit {
 
   public username: string;
   value = '';
-  constructor(private tokenStorageService: TokenStorageService, private router: Router) {
+  error = '';
+  displayedColumns: string[] = ['Symbol', 'Price', 'PurchasePrice', 'Amount', 'ChangePercent', 'PurchaseDate', 'SMA', 'MACD', 'RSI', 'Open', 'High', 'Low', 'Volume', 'CompanyDetails'];
+  dataSource: any[] = [];
+
+  constructor(private tokenStorageService: TokenStorageService, private router: Router, private stockDataService: StockDataService,
+              public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
     this.username = this.tokenStorageService.getUser();
+    this.stockDataService.getPortFolio().subscribe(
+      data => {
+        console.log(data);
+        this.dataSource = data;
+        if (this.dataSource.length === 0) {
+          this.error = 'No results found';
+        }
+      },
+      err => {
+        console.log(err);
+        this.error = 'Failed to fetch user portfolio';
+      }
+    );
   }
+
   searchStock() {
     this.router.navigate(['/search']);
   }
+
+  viewCompanyDetail(symbol) {
+    const dialogRef = this.dialog.open(CompanyDetailDialogComponent, {
+      data: symbol
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
 }
