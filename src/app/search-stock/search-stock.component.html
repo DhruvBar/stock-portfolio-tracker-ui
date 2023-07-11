@@ -8,6 +8,9 @@
     <input matInput type="text" [(ngModel)]="searchQuery">
   </mat-form-field>
   <button mat-raised-button color="primary" (click)="searchStocks()">Search</button>
+  <mat-card-actions align="end">
+    <button mat-raised-button color="primary" (click)="portfolio()">View Portfolio</button>
+  </mat-card-actions>
 </mat-card>
 <p *ngIf="error" class="error">
   {{ error }}

@@ -23,4 +23,8 @@ export class StockDataService {
     return this.http.get(API_URL + 'stock/detail?symbol=' + query );
   }
 
+  addStockToPortFolio(addStockRequest): Observable<any> {
+    return this.http.post(API_URL + 'stock/add/holding', addStockRequest);
+  }
+
 }

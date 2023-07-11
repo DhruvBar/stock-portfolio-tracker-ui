@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AddStockDialogComponent} from '../add-stock-dialog/add-stock-dialog.component';
 import {MatDialog} from '@angular/material/dialog';
 import {StockDataService} from '../service/stock-data.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-search-stock',
@@ -13,12 +14,13 @@ export class SearchStockComponent implements OnInit {
   searchResults: any;
   error = '';
 
-  constructor(private stockDataService: StockDataService) {
+  constructor(private stockDataService: StockDataService, private router: Router) {
   }
 
   ngOnInit(): void {
   }
 
+  // tslint:disable-next-line:typedef
   searchStocks() {
     if (this.searchQuery) {
       this.error = null;
@@ -26,6 +28,9 @@ export class SearchStockComponent implements OnInit {
         data => {
           console.log(data);
           this.searchResults = data;
+          if (this.searchResults.length === 0) {
+            this.error = 'No results found';
+          }
         },
         err => {
           console.log(err);
@@ -33,6 +38,10 @@ export class SearchStockComponent implements OnInit {
         }
       );
     }
+  }
+
+  portfolio() {
+    this.router.navigate(['/home']);
   }
 
 }

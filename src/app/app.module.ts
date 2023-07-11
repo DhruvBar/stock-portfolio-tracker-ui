@@ -22,6 +22,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { SearchStockComponent } from './search-stock/search-stock.component';
 import {AuthInterceptor} from './helper/auth.interceptor';
 import { SearchResultCardComponent } from './search-result-card/search-result-card.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -52,7 +55,10 @@ import { SearchResultCardComponent } from './search-result-card/search-result-ca
     FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSnackBarModule
   ],
   providers: [
     {

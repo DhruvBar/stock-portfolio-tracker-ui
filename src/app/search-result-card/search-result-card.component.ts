@@ -16,7 +16,9 @@ export class SearchResultCardComponent implements OnInit {
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(AddStockDialogComponent);
+    const dialogRef = this.dialog.open(AddStockDialogComponent, {
+      data: this.result
+    });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
