@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   public username: string;
   value = '';
   error = '';
-  displayedColumns: string[] = ['Symbol', 'Price', 'PurchasePrice', 'Amount', 'ChangePercent', 'PurchaseDate', 'SMA', 'MACD', 'RSI', 'Open', 'High', 'Low', 'Volume', 'CompanyDetails'];
+  displayedColumns: string[] = ['Symbol', 'Price', 'PurchasePrice', 'Amount', 'ChangePercent', 'PurchaseDate', 'SMA', 'MACD', 'RSI', 'Open', 'High', 'Low', 'Volume', 'CompanyDetails', 'Action'];
   dataSource: any[] = [];
 
   constructor(private tokenStorageService: TokenStorageService, private router: Router, private stockDataService: StockDataService,
@@ -26,6 +26,10 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.username = this.tokenStorageService.getUser();
+    this.loadUserPortfolio();
+  }
+
+  loadUserPortfolio() {
     this.stockDataService.getPortFolio().subscribe(
       data => {
         console.log(data);
@@ -53,6 +57,19 @@ export class HomeComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
+  }
+
+  deleteStock(symbol) {
+    this.stockDataService.deleteStock(symbol).subscribe(
+      data => {
+        console.log(data);
+        this.loadUserPortfolio();
+      },
+      err => {
+        console.log(err);
+        this.loadUserPortfolio();
+      }
+    );
   }
 
 }
