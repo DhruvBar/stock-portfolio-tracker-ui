@@ -31,4 +31,8 @@ export class StockDataService {
     return this.http.get(API_URL + 'stock/portfolio');
   }
 
+  deleteStock(symbol): Observable<any> {
+    return this.http.get(API_URL + 'stock/remove/holding?symbol=' + symbol );
+  }
+
 }
